@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Set Delivery Location — Bell N Tell</title>
+<link rel="icon" href="assets/logo.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><img src="assets/logo.png" alt="Bell N Tell logo">Bell N Tell</a>
+    <button class="nav-toggle" onclick="toggleNav()">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="deals.html">Deals</a></li>
+      <li><a href="orders.html">My Orders</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="cart.html" class="icon-link cart-icon" title="Cart">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+        <span class="badge cart-badge" style="display:none;">0</span>
+      </a>
+      <a href="profile.html" class="icon-link profile-icon" title="Profile">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-header" style="padding-bottom:96px;">
+  <div class="deco" style="width:200px;height:200px; right:-50px; top:-70px;"></div>
+  <div class="wrap"><h1 class="display">Set your delivery location</h1><p>Use your current location or pick a point on the map to check if we deliver to you.</p></div>
+</header>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<div class="wrap">
+  <div class="location-card">
+    <button class="btn btn-ghost btn-block" style="margin-bottom:12px;" onclick="useCurrentLocation()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M3 11l18-8-8 18-2-8-8-2z"/></svg>
+      Use current location
+    </button>
+
+    <button class="btn btn-outline btn-block" style="margin-bottom:12px;" onclick="toggleMapPicker()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 20l-6-3V4l6 3 6-3 6 3v13l-6-3-6 3z"/><path d="M9 4v13M15 7v13"/></svg>
+      Pick location on map
+    </button>
+
+    <div id="mapPickerWrap" style="display:none; margin-bottom:16px;">
+      <p style="font-size:13px;color:var(--muted);margin:0 0 8px;">📍 Tap anywhere on the map to drop your delivery pin</p>
+      <div id="leafletMap" style="height:340px;border-radius:var(--r-md);overflow:hidden;border:2px solid var(--line);"></div>
+      <button class="btn btn-primary btn-block" style="margin-top:10px;" id="useMapPinBtn" onclick="useMapPin()" disabled>Use this location</button>
+    </div>
+
+    <div class="loc-result" id="locResult" style="display:none;"></div>
+
+    <div id="locFormBelow" style="display:none;">
+      <div class="phone-field">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="2"/></svg>
+        <input type="tel" id="phoneInput" placeholder="Enter your 11-digit mobile number" maxlength="11" oninput="validatePhone()">
+      </div>
+      <div class="field-hint">Must be exactly 11 digits (e.g., 03xxxxxxxxx) — used by the driver to contact you.</div>
+      <button class="btn btn-primary btn-block" id="contLocBtn" disabled onclick="confirmLocation()">Continue</button>
+    </div>
+  </div>
+</div>
+
+
+
+<script src="app.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+let pickedLatLng = null; // {lat, lng} chosen via map or geolocation
+let leafletMap = null;
+let leafletMarker = null;
+
+function showLocResult(lat, lng){
+  const dist = haversine(BRANCH.lat, BRANCH.lng, lat, lng);
+  const ok = dist <= BRANCH.radiusKm;
+  const resultEl = document.getElementById('locResult');
+  resultEl.style.display = 'block';
+  resultEl.innerHTML = `
+    <div class="status-line ${ok?'ok':'bad'}">
+      ${ok ? '✅ Great! We deliver to your location' : '⚠️ Sorry, you are outside our delivery radius'}
+    </div>
+    <div class="radius-line">~${dist.toFixed(1)} km from ${BRANCH.name} (we deliver within ${BRANCH.radiusKm} km)</div>
+  `;
+  document.getElementById('locFormBelow').style.display = ok ? 'block' : 'none';
+  if(!ok){
+    showToast('Outside delivery radius 😔');
+  }
+  setDelivery({ok, lat, lng, phone: (getDelivery()||{}).phone || ''});
+  validatePhone();
+}
+
+function useCurrentLocation(){
+  if(!navigator.geolocation){
+    showToast('Geolocation not supported by your browser');
+    return;
+  }
+  showToast('Locating you…');
+  navigator.geolocation.getCurrentPosition(
+    function(pos){
+      pickedLatLng = {lat: pos.coords.latitude, lng: pos.coords.longitude};
+      document.getElementById('mapPickerWrap').style.display = 'none';
+      showLocResult(pickedLatLng.lat, pickedLatLng.lng);
+    },
+    function(){
+      showToast('Could not get your location — try picking on the map');
+    },
+    {enableHighAccuracy:true, timeout:8000}
+  );
+}
+
+function toggleMapPicker(){
+  const wrap = document.getElementById('mapPickerWrap');
+  const opening = wrap.style.display === 'none';
+  wrap.style.display = opening ? 'block' : 'none';
+  if(opening && !leafletMap && typeof L !== 'undefined'){
+    leafletMap = L.map('leafletMap').setView([BRANCH.lat, BRANCH.lng], 13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(leafletMap);
+    L.circle([BRANCH.lat, BRANCH.lng], {radius: BRANCH.radiusKm*1000, color:'#F3692C', fillOpacity:0.06}).addTo(leafletMap);
+    leafletMap.on('click', function(e){
+      pickedLatLng = {lat: e.latlng.lat, lng: e.latlng.lng};
+      if(leafletMarker) leafletMap.removeLayer(leafletMarker);
+      leafletMarker = L.marker([pickedLatLng.lat, pickedLatLng.lng]).addTo(leafletMap);
+      document.getElementById('useMapPinBtn').disabled = false;
+    });
+    setTimeout(function(){ leafletMap.invalidateSize(); }, 150);
+  } else if(opening && leafletMap){
+    setTimeout(function(){ leafletMap.invalidateSize(); }, 150);
+  }
+}
+
+function useMapPin(){
+  if(!pickedLatLng) return;
+  showLocResult(pickedLatLng.lat, pickedLatLng.lng);
+}
+
+function validatePhone(){
+  const input = document.getElementById('phoneInput');
+  const btn = document.getElementById('contLocBtn');
+  const digitsOnly = input.value.replace(/\D/g,'');
+  if(digitsOnly !== input.value) input.value = digitsOnly;
+  const valid = digitsOnly.length === 11;
+  btn.disabled = !valid;
+  return valid;
+}
+
+function confirmLocation(){
+  if(!validatePhone()) return;
+  const phone = document.getElementById('phoneInput').value;
+  const d = getDelivery() || {};
+  setDelivery({ok: d.ok, lat: d.lat, lng: d.lng, phone});
+  showToast('Delivery location saved 📍');
+  setTimeout(function(){
+    const redirect = DB.get('redirect', null);
+    DB.set('redirect', null);
+    location.href = redirect || 'menu.html';
+  }, 600);
+}
+
+// If a delivery location was already set previously, show it on load
+(function(){
+  const existing = getDelivery();
+  if(existing && typeof existing.lat === 'number'){
+    pickedLatLng = {lat: existing.lat, lng: existing.lng};
+    showLocResult(existing.lat, existing.lng);
+    if(existing.phone) document.getElementById('phoneInput').value = existing.phone;
+    validatePhone();
+  }
+})();
+</script>
+
+<div class="footer-top-wave" style="background:var(--cream);">
+  <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,40 C360,0 1080,80 1440,20 L1440,60 L0,60 Z" fill="#241A12"/>
+  </svg>
+</div>
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-brand-col">
+      <div class="brand footer-brand-link"><img src="assets/logo.png" alt="" style="width:38px;height:38px;border-radius:11px;">Bell N Tell</div>
+      <p class="footer-tagline">A good mood food. Serving Multan's finest multi-cuisine experience — Chinese, Pakistani, BBQ, Tandoor & more, right to your door.</p>
+      <div class="footer-socials">
+        <a href="https://www.facebook.com/BellNTellRestaurant/" target="_blank" class="social-icon" title="Facebook"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="https://play.google.com/store/apps/details?id=com.softwaretechnologies.bellntell" target="_blank" class="social-icon" title="App"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5v-17c0-.83 1-.83 1.5-.5l15 8.5-15 8.5C3.5 20.5 3 20.5 3 20.5z"/></svg></a>
+        <a href="https://maps.app.goo.gl/TEPqBBx1SkArubg39" target="_blank" class="social-icon" title="Maps"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="9" r="3"/><path d="M12 22s7-7.4 7-12a7 7 0 1 0-14 0c0 4.6 7 12 7 12z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul class="footer-links">
+        <li><a href="menu.html">🍽️ Menu</a></li>
+        <li><a href="deals.html">🏷️ Deals</a></li>
+        <li><a href="cart.html">🛒 Cart</a></li>
+        <li><a href="orders.html">📦 My Orders</a></li>
+        <li><a href="profile.html">👤 Profile</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Our Branch</h4>
+      <div class="footer-address">
+        <div class="addr-item"><span>📍</span><span>Plot B 58, B Block, Shah Rukn-e-Alam, Multan</span></div>
+        <div class="addr-item"><span>📞</span><a href="tel:03006301769">0300-6301769</a></div>
+        <div class="addr-item"><span>🕐</span><span>Open daily · 11 AM – 12:30 AM</span></div>
+        <div class="addr-item"><span>🗺️</span><a href="https://maps.app.goo.gl/TEPqBBx1SkArubg39" target="_blank">View on Google Maps →</a></div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Download App</h4>
+      <a href="https://play.google.com/store/apps/details?id=com.softwaretechnologies.bellntell" target="_blank" class="gplay-btn">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5v-17c0-.83 1-.83 1.5-.5l15 8.5-15 8.5C3.5 20.5 3 20.5 3 20.5z"/></svg>
+        <div><span style="font-size:11px;display:block;opacity:.75;">Get it on</span><span style="font-size:15px;font-weight:800;">Google Play</span></div>
+      </a>
+      <div class="footer-rating-badge"><span class="stars-sm">★★★★★</span><span>4.9 · 90% recommend</span></div>
+    </div>
+  </div>
+  <div class="bottom">
+    <span>© 2024 Bell N Tell · Shah Rukn-e-Alam, Multan</span>
+    <button class="scroll-top-btn" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
+    </button>
+  </div>
+</footer>
+
+</body>
+</html>

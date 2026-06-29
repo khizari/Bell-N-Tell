@@ -1,0 +1,59 @@
+<svg viewBox="0 0 560 480" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="290" cy="240" r="220" fill="#EFE7D8"/>
+  <circle cx="290" cy="240" r="220" fill="url(#g1)" opacity=".5"/>
+  <defs>
+    <radialGradient id="g1" cx="35%" cy="25%" r="70%">
+      <stop offset="0%" stop-color="#FFF6EC"/>
+      <stop offset="100%" stop-color="#EFE7D8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- big plate -->
+  <ellipse cx="290" cy="320" rx="190" ry="40" fill="#000" opacity=".05"/>
+  <circle cx="290" cy="280" r="170" fill="#FFFFFF"/>
+  <circle cx="290" cy="280" r="170" fill="none" stroke="#EDE3D3" stroke-width="6"/>
+  <circle cx="290" cy="280" r="130" fill="#FBF3E7"/>
+
+  <!-- bbq skewer -->
+  <g transform="translate(150,190) rotate(-8)">
+    <rect x="0" y="0" width="190" height="10" rx="5" fill="#9aa39a"/>
+    <circle cx="20" cy="5" r="17" fill="#7a3b1e"/>
+    <circle cx="58" cy="5" r="18" fill="#c0392b"/>
+    <circle cx="98" cy="5" r="16" fill="#3FA66B"/>
+    <circle cx="136" cy="5" r="18" fill="#7a3b1e"/>
+    <circle cx="172" cy="5" r="15" fill="#c0392b"/>
+  </g>
+
+  <!-- naan -->
+  <ellipse cx="200" cy="330" rx="58" ry="30" fill="#E8B073"/>
+  <ellipse cx="200" cy="330" rx="58" ry="30" fill="none" stroke="#C98F52" stroke-width="3"/>
+  <path d="M170 320 q10 12 20 0 M195 314 q10 14 22 -2 M222 322 q8 10 16 0" stroke="#B8784A" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+  <!-- salad bowl -->
+  <path d="M330 320 a55 35 0 0 0 110 0z" fill="#fff"/>
+  <path d="M345 312 q20 -20 45 -12 q25 -10 45 12z" fill="#3FA66B"/>
+  <circle cx="365" cy="306" r="8" fill="#E0392B"/>
+  <circle cx="395" cy="298" r="7" fill="#F4C53A"/>
+  <circle cx="420" cy="306" r="7" fill="#F4A23A"/>
+
+  <!-- karahi accent top -->
+  <ellipse cx="290" cy="200" rx="46" ry="22" fill="#D9531D"/>
+  <ellipse cx="290" cy="196" rx="38" ry="17" fill="#E8702C"/>
+  <circle cx="278" cy="192" r="5" fill="#F4C53A"/>
+  <circle cx="302" cy="198" r="5" fill="#3FA66B"/>
+
+  <!-- bell badge -->
+  <g transform="translate(420,90)">
+    <circle r="46" fill="#F3692C"/>
+    <path d="M0-18c-9 0-13 7-13 16 0 7-2 12-6 16h38c-4-4-6-9-6-16 0-9-4-16-13-16z" fill="#FFE9A8"/>
+    <rect x="-4" y="-26" width="8" height="7" rx="2" fill="#FFE9A8"/>
+    <ellipse cy="16" rx="20" ry="3.5" fill="#E9B23A"/>
+    <circle cy="22" r="3" fill="#7A3B1E"/>
+  </g>
+
+  <!-- floating dots -->
+  <circle cx="80" cy="90" r="6" fill="#3FA66B"/>
+  <rect x="470" cy="200" x="470" y="330" width="12" height="12" rx="3" fill="#F4C53A" transform="rotate(20 476 336)"/>
+  <circle cx="60" cy="380" r="5" fill="#F4A23A"/>
+  <circle cx="500" cy="120" r="5" fill="#E0392B"/>
+</svg>

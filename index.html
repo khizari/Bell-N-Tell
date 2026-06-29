@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bell N Tell — Order Online | Multan</title>
+<link rel="icon" href="assets/logo.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><img src="assets/logo.png" alt="Bell N Tell logo">Bell N Tell</a>
+    <button class="nav-toggle" onclick="toggleNav()">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="deals.html">Deals</a></li>
+      <li><a href="orders.html">My Orders</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="cart.html" class="icon-link cart-icon" title="Cart">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+        <span class="badge cart-badge" style="display:none;">0</span>
+      </a>
+      <a href="profile.html" class="icon-link profile-icon" title="Profile">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="eyebrow">🔔 Multan's Own Kitchen</span>
+      <h1 class="display">Hot food,<br><span>delivered with a ring.</span></h1>
+      <p class="lead">Chinese, Pakistani, BBQ, Tandoor, Fast Food and English Kitchen — all from one trusted Bell N Tell branch, straight to your door.</p>
+      <div class="hero-ctas">
+        <a href="menu.html" class="btn btn-primary">Order Now</a>
+        <a href="deals.html" class="btn btn-outline">View Deals</a>
+      </div>
+      <div class="hero-stats">
+        <div><b>7</b><span>Menu categories</span></div>
+        <div><b>10km</b><span>Delivery radius</span></div>
+        <div><b>10%</b><span>Off every order</span></div>
+      </div>
+    </div>
+    <div class="hero-art">
+      <div class="phone-float-wrap">
+        <img src="assets/phone-mockup.webp" alt="Bell N Tell app" class="phone-solo-img"/>
+        <!-- LEFT SIDE badges -->
+        <div class="phone-badge fb-left fb-l1">🛵 On the way! <span class="fb-sub" style="color:var(--orange-deep);">~15 min</span></div>
+        <div class="phone-badge fb-left fb-l2">🔥 Trending now</div>
+        <div class="phone-badge fb-left fb-l3">🍱 Fresh & hot</div>
+        <div class="phone-badge fb-left fb-l4">⚡ Fast delivery</div>
+        <!-- RIGHT SIDE badges -->
+        <div class="phone-badge fb-right fb-r1">⭐ 4.9 <span class="fb-sub">Google Reviews</span></div>
+        <div class="phone-badge fb-right fb-r2"><span class="badge-dot"></span> 120+ orders today</div>
+        <div class="phone-badge fb-right fb-r3">🏷️ 10% off every order</div>
+        <div class="phone-badge fb-right fb-r4">👨‍🍳 Chef's special daily</div>
+        <div class="phone-badge fb-right fb-r5">📍 Multan's finest</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ── FOOD CATEGORIES SECTION ── -->
+<section class="cat-section">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Browse</span>
+        <h2 class="display">What are you craving?</h2>
+      </div>
+      <a href="menu.html">See full menu →</a>
+    </div>
+
+    <!-- Category filter pills -->
+    <div class="float-cats">
+      <button class="fcat active" data-cat="all">🍽️ All</button>
+      <button class="fcat" data-cat="chinese">🥢 Chinese</button>
+      <button class="fcat" data-cat="pakistani">🍛 Pakistani</button>
+      <button class="fcat" data-cat="bbq">🔥 BBQ</button>
+      <button class="fcat" data-cat="salad">🥗 Salad</button>
+      <button class="fcat" data-cat="tandoor">🫓 Tandoor</button>
+      <button class="fcat" data-cat="fastfood">🍔 Fast Food</button>
+      <button class="fcat" data-cat="english">🍽️ English</button>
+      <button class="fcat" data-cat="deals">🏷️ Deals</button>
+    </div>
+
+    <!-- Food cards with webp/svg images from assets -->
+    <div class="order-photo-grid">
+      <a href="menu.html#chinese" class="order-photo-card" data-cat="chinese">
+        <div class="opcard-img opc-asset-bg" style="--ec:#FDEFE2">
+          <img src="assets/cat-chinese.webp" alt="Chinese Kitchen" loading="lazy">
+        </div>
+        <div class="opcard-info"><span class="opcard-name">Chinese Kitchen</span><span class="opcard-eta">⏱ 20–35 min</span></div>
+      </a>
+      <a href="menu.html#pakistani" class="order-photo-card" data-cat="pakistani">
+        <div class="opcard-img opc-asset-bg" style="--ec:#FCE8E6">
+          <img src="assets/cat-pakistani.webp" alt="Pakistani Kitchen" loading="lazy">
+        </div>
+        <div class="opcard-info"><span class="opcard-name">Pakistani Kitchen</span><span class="opcard-eta">⏱ 25–40 min</span></div>
+      </a>
+      <a href="menu.html#bbqsec" class="order-photo-card" data-cat="bbq">
+        <div class="opcard-img opc-asset-bg" style="--ec:#FDE3DA">
+          <img src="assets/cat-bbq.webp" alt="BBQ Section" loading="lazy">
+        </div>
+        <div class="opcard-info"><span class="opcard-name">BBQ Section</span><span class="opcard-eta">⏱ 30–45 min</span></div>
+      </a>
+      <a href="menu.html#salad" class="order-photo-card" data-cat="salad">
+        <div class="opcard-img opc-asset-bg" style="--ec:#E6F4E9">
+          <img src="assets/cat-salad.webp" alt="Salad Bar" loading="lazy">
+        </div>
+        <div class="opcard-info"><span class="opcard-name">Salad Bar</span><span class="opcard-eta">⏱ 10–20 min</span></div>
+      </a>
+      <a href="menu.html#tandoor" class="order-photo-card" data-cat="tandoor">
+        <div class="opcard-img opc-asset-bg" style="--ec:#F6E9D8">
+          <img src="assets/cat-tandoor.webp" alt="Tandoor" loading="lazy">
+        </div>
+        <div class="opcard-info"><span class="opcard-name">Tandoor</span><span class="opcard-eta">⏱ 20–35 min</span></div>
+      </a>
+      <a href="menu.html#fastfood" class="order-photo-card" data-cat="fastfood">
+        <div class="opcard-img opc-asset-bg" style="--ec:#FFEAD8">
+          <img src="assets/cat-fastfood.webp" alt="Fast Food" loading="lazy">
+        </div>
+        <div class="opcard-info"><span class="opcard-name">Fast Food</span><span class="opcard-eta">⏱ 15–25 min</span></div>
+      </a>
+      <a href="menu.html#english" class="order-photo-card" data-cat="english">
+        <div class="opcard-img opc-asset-bg" style="--ec:#EFEAE0">
+          <img src="assets/cat-english.webp" alt="English Kitchen" loading="lazy">
+        </div>
+        <div class="opcard-info"><span class="opcard-name">English Kitchen</span><span class="opcard-eta">⏱ 20–30 min</span></div>
+      </a>
+      <a href="deals.html" class="order-photo-card" data-cat="deals">
+        <div class="opcard-img opc-asset-bg" style="--ec:#FFF8F0">
+          <img src="assets/deals.webp" alt="Platter Special" loading="lazy">
+        </div>
+        <div class="opcard-info"><span class="opcard-name">Platter Special</span><span class="opcard-eta">⏱ 30–40 min</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ── PROMO BANNER ── -->
+<section style="padding-top:0;">
+  <div class="wrap">
+    <div class="promo-banner">
+      <div class="blob"></div><div class="blob2"></div>
+      <div>
+        <div class="top">🔔 Flat 10% Discount — Every Order</div>
+        <div class="mid">Bell N Tell Special Chicken Dinner &amp; the entire menu</div>
+        <div class="price"><del>Rs. 1780</del> Rs. 1602 <span class="tag">-10%</span></div>
+      </div>
+      <a href="deals.html" class="btn" style="background:#fff; color:var(--blue2); flex-shrink:0;">Order Now</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY US ── -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div><span class="eyebrow">Why Bell N Tell</span><h2 class="display">Built for fast, fresh delivery</h2></div>
+    </div>
+    <div class="feature-strip">
+      <div class="feature-card">
+        <div class="ic">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3"/><rect x="9" y="11" width="14" height="10" rx="2"/><circle cx="12" cy="17" r="1"/><circle cx="20" cy="17" r="1"/></svg>
+        </div>
+        <h3>Quick doorstep delivery</h3>
+        <p>Free delivery on your first order, anywhere within our 10km radius.</p>
+      </div>
+      <div class="feature-card">
+        <div class="ic">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+        </div>
+        <h3>Flat 10% off, always</h3>
+        <p>Every dish across all 7 kitchens comes with a standing 10% discount.</p>
+      </div>
+      <div class="feature-card">
+        <div class="ic">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        </div>
+        <h3>Order as a guest</h3>
+        <p>Browse and build your cart without an account — sign in only when you check out.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BRANCH / LOCATION ── -->
+<section>
+  <div class="wrap">
+    <div class="branch-strip">
+      <div>
+        <span class="eyebrow">Current Branch</span>
+        <h2 class="display" style="margin:12px 0 0;">Bell N Tell<br>Shah Rukn-e-Alam</h2>
+        <div class="pill"><span class="dot"></span>Open Now</div>
+        <address>Plot B 58, B Block, Shah Rukn-e-Alam Housing Scheme, Multan, Pakistan</address>
+        <div class="hero-ctas">
+          <a href="https://maps.app.goo.gl/gh9beGScssr3FwYA6" target="_blank" class="btn btn-outline">Open in Google Maps</a>
+          <a href="location.html" class="btn btn-primary">Check Delivery</a>
+        </div>
+      </div>
+      <div class="map-frame">
+        <a href="https://maps.app.goo.gl/gh9beGScssr3FwYA6" target="_blank">
+          <img src="assets/map.webp" alt="Bell N Tell location map" style="width:100%;display:block;border-radius:var(--r-md);"/>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── GOOGLE REVIEWS SECTION ── -->
+<section class="reviews-section">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">⭐ Customer Reviews</span>
+        <h2 class="display">What people are saying</h2>
+      </div>
+      <a href="https://maps.app.goo.gl/TEPqBBx1SkArubg39" target="_blank" class="btn btn-outline btn-sm">See all on Google Maps →</a>
+    </div>
+    <div class="reviews-grid">
+
+      <div class="review-card reveal reveal-delay-1">
+        <div class="review-header">
+          <div class="reviewer-avatar" style="background:linear-gradient(135deg,#F3692C,#D9531D);">M</div>
+          <div class="reviewer-info">
+            <strong>Muhammad Usman</strong>
+            <span class="review-date">2 months ago</span>
+          </div>
+          <div class="google-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+            Google
+          </div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Amazing food and fast delivery! The BBQ platter was absolutely delicious — tender, smoky, and generous portions. Bell N Tell never disappoints. Will definitely order again!"</p>
+        <a href="https://maps.app.goo.gl/TEPqBBx1SkArubg39" target="_blank" class="review-link">View on Google Maps →</a>
+      </div>
+
+      <div class="review-card reveal reveal-delay-2">
+        <div class="review-header">
+          <div class="reviewer-avatar" style="background:linear-gradient(135deg,#2E8FE6,#1B5FB0);">S</div>
+          <div class="reviewer-info">
+            <strong>Sana Riaz</strong>
+            <span class="review-date">1 month ago</span>
+          </div>
+          <div class="google-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+            Google
+          </div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Best Chinese and Pakistani food combo in Multan! The staff is super friendly and the delivery was hot and on time. The shahi daal and chicken gravy are an absolute must-try. 10/10!"</p>
+        <a href="https://maps.app.goo.gl/M27XDPMx2vVLXVUK6" target="_blank" class="review-link">View on Google Maps →</a>
+      </div>
+
+      <div class="review-card reveal reveal-delay-3">
+        <div class="review-header">
+          <div class="reviewer-avatar" style="background:linear-gradient(135deg,#3FA66B,#2E7D32);">A</div>
+          <div class="reviewer-info">
+            <strong>Ali Hassan</strong>
+            <span class="review-date">3 weeks ago</span>
+          </div>
+          <div class="google-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+            Google
+          </div>
+        </div>
+        <div class="review-stars">★★★★☆</div>
+        <p class="review-text">"Really enjoyed ordering from Bell N Tell through their app. The variety is unmatched — BBQ, tandoor, Chinese all in one place. Delivery was quick and packaging was neat. Great value for money!"</p>
+        <a href="https://maps.app.goo.gl/nTGVWXwvRegeLqfJA" target="_blank" class="review-link">View on Google Maps →</a>
+      </div>
+
+    </div>
+
+    <div class="reviews-summary reveal">
+      <div class="rating-big">
+        <span class="rating-num">4.9</span>
+        <div>
+          <div class="rating-stars-lg">★★★★★</div>
+          <p>Based on Google Reviews</p>
+        </div>
+      </div>
+      <a href="https://maps.app.goo.gl/TEPqBBx1SkArubg39" target="_blank" class="btn btn-primary">Read all reviews on Google</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── ENHANCED FOOTER ── -->
+<div class="footer-top-wave">
+  <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,40 C360,0 1080,80 1440,20 L1440,60 L0,60 Z" fill="#241A12"/>
+  </svg>
+</div>
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-brand-col">
+      <div class="brand footer-brand-link"><img src="assets/logo.png" alt="" style="width:38px;height:38px;border-radius:11px;">Bell N Tell</div>
+      <p class="footer-tagline">A good mood food. Serving Multan's finest multi-cuisine experience — Chinese, Pakistani, BBQ, Tandoor & more, right to your door.</p>
+      <div class="footer-socials">
+        <a href="https://www.facebook.com/BellNTellRestaurant/" target="_blank" class="social-icon" title="Facebook">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.softwaretechnologies.bellntell" target="_blank" class="social-icon" title="Download App">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5v-17c0-.83 1-.83 1.5-.5l15 8.5-15 8.5C3.5 20.5 3 20.5 3 20.5z"/></svg>
+        </a>
+        <a href="https://maps.app.goo.gl/TEPqBBx1SkArubg39" target="_blank" class="social-icon" title="Google Maps">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="9" r="3"/><path d="M12 22s7-7.4 7-12a7 7 0 1 0-14 0c0 4.6 7 12 7 12z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul class="footer-links">
+        <li><a href="menu.html">🍽️ Menu</a></li>
+        <li><a href="deals.html">🏷️ Deals</a></li>
+        <li><a href="cart.html">🛒 Cart</a></li>
+        <li><a href="orders.html">📦 My Orders</a></li>
+        <li><a href="profile.html">👤 Profile</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Our Branch</h4>
+      <div class="footer-address">
+        <div class="addr-item">
+          <span>📍</span>
+          <span>Plot B 58, B Block, Shah Rukn-e-Alam Housing Scheme, Multan</span>
+        </div>
+        <div class="addr-item">
+          <span>📞</span>
+          <a href="tel:03006301769">0300-6301769</a>
+        </div>
+        <div class="addr-item">
+          <span>🕐</span>
+          <span>Open daily · 11 AM – 12:30 AM</span>
+        </div>
+        <div class="addr-item">
+          <span>🗺️</span>
+          <a href="https://maps.app.goo.gl/TEPqBBx1SkArubg39" target="_blank">View on Google Maps →</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Download App</h4>
+      <a href="https://play.google.com/store/apps/details?id=com.softwaretechnologies.bellntell" target="_blank" class="gplay-btn">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5v-17c0-.83 1-.83 1.5-.5l15 8.5-15 8.5C3.5 20.5 3 20.5 3 20.5z"/></svg>
+        <div><span style="font-size:11px;display:block;opacity:.75;">Get it on</span><span style="font-size:15px;font-weight:800;">Google Play</span></div>
+      </a>
+      <div class="footer-rating-badge">
+        <span class="stars-sm">★★★★★</span>
+        <span>4.9 · 90% recommend</span>
+      </div>
+    </div>
+  </div>
+  <div class="bottom">
+    <span>© 2024 Bell N Tell · Shah Rukn-e-Alam, Multan</span>
+    <button class="scroll-top-btn" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
+    </button>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

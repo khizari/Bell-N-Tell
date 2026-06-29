@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu — Bell N Tell</title>
+<link rel="icon" href="assets/logo.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><img src="assets/logo.png" alt="Bell N Tell logo">Bell N Tell</a>
+    <button class="nav-toggle" onclick="toggleNav()">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html" class="active">Menu</a></li>
+      <li><a href="deals.html">Deals</a></li>
+      <li><a href="orders.html">My Orders</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="cart.html" class="icon-link cart-icon" title="Cart">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+        <span class="badge cart-badge" style="display:none;">0</span>
+      </a>
+      <a href="profile.html" class="icon-link profile-icon" title="Profile">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="deco" style="width:220px;height:220px; right:-60px; top:-80px;"></div>
+  <div class="deco" style="width:120px;height:120px; right:120px; bottom:-70px;"></div>
+  <div class="wrap">
+    <h1 class="display">Explore Menu</h1>
+    <p>Browse all 8 kitchens — every dish comes with a flat 10% discount.</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="menu-toolbar">
+    <div class="search-box">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input type="text" id="searchInput" placeholder="Search the menu…" oninput="renderMenu()">
+    </div>
+  </div>
+
+  <div class="cat-pillbar" id="catPillbar"></div>
+
+  <div id="menuSections"></div>
+</div>
+
+<div class="footer-top-wave" style="background:var(--cream);">
+  <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,40 C360,0 1080,80 1440,20 L1440,60 L0,60 Z" fill="#241A12"/>
+  </svg>
+</div>
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-brand-col">
+      <div class="brand footer-brand-link"><img src="assets/logo.png" alt="" style="width:38px;height:38px;border-radius:11px;">Bell N Tell</div>
+      <p class="footer-tagline">A good mood food. Serving Multan's finest multi-cuisine experience — Chinese, Pakistani, BBQ, Tandoor & more, right to your door.</p>
+      <div class="footer-socials">
+        <a href="https://www.facebook.com/BellNTellRestaurant/" target="_blank" class="social-icon" title="Facebook"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="https://play.google.com/store/apps/details?id=com.softwaretechnologies.bellntell" target="_blank" class="social-icon" title="App"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5v-17c0-.83 1-.83 1.5-.5l15 8.5-15 8.5C3.5 20.5 3 20.5 3 20.5z"/></svg></a>
+        <a href="https://maps.app.goo.gl/TEPqBBx1SkArubg39" target="_blank" class="social-icon" title="Maps"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="9" r="3"/><path d="M12 22s7-7.4 7-12a7 7 0 1 0-14 0c0 4.6 7 12 7 12z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul class="footer-links">
+        <li><a href="menu.html">🍽️ Menu</a></li>
+        <li><a href="deals.html">🏷️ Deals</a></li>
+        <li><a href="cart.html">🛒 Cart</a></li>
+        <li><a href="orders.html">📦 My Orders</a></li>
+        <li><a href="profile.html">👤 Profile</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Our Branch</h4>
+      <div class="footer-address">
+        <div class="addr-item"><span>📍</span><span>Plot B 58, B Block, Shah Rukn-e-Alam, Multan</span></div>
+        <div class="addr-item"><span>📞</span><a href="tel:03006301769">0300-6301769</a></div>
+        <div class="addr-item"><span>🕐</span><span>Open daily · 11 AM – 12:30 AM</span></div>
+        <div class="addr-item"><span>🗺️</span><a href="https://maps.app.goo.gl/TEPqBBx1SkArubg39" target="_blank">View on Google Maps →</a></div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Download App</h4>
+      <a href="https://play.google.com/store/apps/details?id=com.softwaretechnologies.bellntell" target="_blank" class="gplay-btn">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5v-17c0-.83 1-.83 1.5-.5l15 8.5-15 8.5C3.5 20.5 3 20.5 3 20.5z"/></svg>
+        <div><span style="font-size:11px;display:block;opacity:.75;">Get it on</span><span style="font-size:15px;font-weight:800;">Google Play</span></div>
+      </a>
+      <div class="footer-rating-badge"><span class="stars-sm">★★★★★</span><span>4.9 · 90% recommend</span></div>
+    </div>
+  </div>
+  <div class="bottom">
+    <span>© 2024 Bell N Tell · Shah Rukn-e-Alam, Multan</span>
+    <button class="scroll-top-btn" id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
+    </button>
+  </div>
+</footer>
+
+
+<script src="app.js"></script>
+<script>
+let activeCat = 'all';
+
+function renderPillbar(){
+  const el = document.getElementById('catPillbar');
+  let html = `<div class="cat-pill ${activeCat==='all'?'active':''}" onclick="setCat('all')">All</div>`;
+  html += CATS.map(c=>`<div class="cat-pill ${activeCat===c.id?'active':''}" onclick="setCat('${c.id}')"><img src="${c.img}">${c.name}</div>`).join('');
+  el.innerHTML = html;
+}
+function setCat(id){
+  activeCat = id;
+  renderPillbar();
+  renderMenu();
+  if(id!=='all'){
+    const target = document.getElementById('sec-'+id);
+    if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+}
+function renderMenu(){
+  const q = (document.getElementById('searchInput').value||'').toLowerCase();
+  const el = document.getElementById('menuSections');
+  const cats = activeCat==='all' ? CATS : CATS.filter(c=>c.id===activeCat);
+  let html = '';
+  cats.forEach(c=>{
+    const items = c.items.filter(it=>it.n.toLowerCase().includes(q));
+    if(items.length===0) return;
+    html += `<div class="menu-section" id="sec-${c.id}">
+      <h2><img src="${c.img}">${c.name}</h2>
+      <div class="item-grid">`;
+    items.forEach(it=>{
+      const key = keyFor(c.id, it.n);
+      const off = Math.round((1-it.d/it.p)*100);
+      html += `
+        <div class="item-card">
+          ${off>0?`<div class="disc-tag">-${off}.0%</div>`:''}
+          <div class="thumb" style="background:${c.bg}"><img src="${it.img}" alt="${it.n}" loading="lazy"></div>
+          <div class="body">
+            <div class="name">${it.n}</div>
+            <div class="price-row">${it.p!==it.d?`<del>Rs. ${it.p}</del>`:''}<b>Rs. ${it.d}</b></div>
+            <div class="actions">
+              <div class="qty-stepper">
+                <button class="qty-btn" onclick="stepQty('${key}',-1)">−</button>
+                <span class="qty-num" id="qty-${key}">1</span>
+                <button class="qty-btn" onclick="stepQty('${key}',1)">+</button>
+              </div>
+              <button class="add-btn" onclick="addItem('${key}','${it.n.replace(/'/g,"\\'")}',${it.d})">Add to Cart</button>
+            </div>
+          </div>
+        </div>`;
+    });
+    html += `</div></div>`;
+  });
+  el.innerHTML = html || `<div class="empty-state"><b>No items found</b><span>Try a different search term</span></div>`;
+}
+const qtyState = {};
+function stepQty(key, d){
+  qtyState[key] = Math.max(1,(qtyState[key]||1)+d);
+  const elQ = document.getElementById('qty-'+key);
+  if(elQ) elQ.textContent = qtyState[key];
+}
+function addItem(key, name, price){
+  addToCart(key, name, price, qtyState[key]||1);
+}
+
+renderPillbar();
+renderMenu();
+
+// deep-link from home page e.g. menu.html#chinese
+if(location.hash){
+  const id = location.hash.replace('#','');
+  if(CATS.some(c=>c.id===id)) setCat(id);
+}
+</script>
+</body>
+</html>
