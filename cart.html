@@ -219,9 +219,21 @@ function placeOrder(){
 
 renderCartPage();
 
-// If we just landed here after completing login/location with a pending checkout, jump straight to checkout
+// If we just landed here after completing login/location with a pending checkout,
+// the order is ready — but we deliberately do NOT auto-call goToCheckout()/window.open()
+// here. Browsers block popups that aren't triggered by a direct user click/tap, and a
+// page-load timer doesn't count as one, so WhatsApp would silently fail to open on this
+// first run. Instead we highlight the checkout button so the user's own tap supplies
+// the required gesture and WhatsApp opens reliably every time.
 if(new URLSearchParams(location.search).get('checkout')==='1'){
-  setTimeout(goToCheckout, 50);
+  setTimeout(function(){
+    const btn = document.querySelector('.checkout-btn');
+    if(btn){
+      btn.scrollIntoView({behavior:'smooth', block:'center'});
+      btn.classList.add('pulse');
+      showToast('Tap below to confirm your order on WhatsApp 👇');
+    }
+  }, 200);
 }
 </script>
 </body>

@@ -662,6 +662,7 @@ section{padding:64px 0;}
   50%{box-shadow:0 14px 36px -6px rgba(243,105,44,.85);}
 }
 .btn-primary.pulse{animation:ctaPulse 2s ease-in-out infinite;}
+.checkout-btn.pulse{animation:ctaPulse 2s ease-in-out infinite;}
 
 /* ============ LOADING SKELETON ============ */
 @keyframes skeletonShimmer{
