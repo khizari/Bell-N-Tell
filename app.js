@@ -3,6 +3,11 @@ const BRANCH = {lat:30.196235, lng:71.510246, radiusKm:10, name:'Bell N Tell (Sh
   address:'Plot B 58, B Block, Shah Rukn-e-Alam Housing Scheme, Multan, Pakistan',
   mapsUrl:'https://maps.app.goo.gl/gh9beGScssr3FwYA6'};
 
+/* Owner's WhatsApp number that receives every order.
+   Format: country code + number, digits only — no +, no spaces, no leading 0.
+   ⚠️ Replace with the real WhatsApp number before going live. */
+const OWNER_WHATSAPP = '923001234567';
+
 const CATS = [
   {id:'chinese', name:'Chinese Kitchen', img:'assets/cat-chinese.webp', bg:'#FDEFE2', items:[
     {n:'Chicken Chowmein',            p:1780, d:1602, img:'assets/chinese-chicken-chowmein.webp'},
@@ -293,8 +298,6 @@ function getCart(){ return DB.get('cart', []); }
 function setCart(c){ DB.set('cart', c); updateCartBadge(); }
 function getUser(){ return DB.get('user', null); }
 function setUser(u){ DB.set('user', u); }
-function isGuest(){ return DB.get('guest', false); }
-function setGuest(g){ DB.set('guest', g); }
 function getDelivery(){ return DB.get('delivery', null); } // {ok, phone}
 function setDelivery(d){ DB.set('delivery', d); }
 function getOrders(){ return DB.get('orders', {running:[], history:[]}); }
@@ -351,6 +354,39 @@ function removeFromCart(key){
   if(typeof renderCartPage === 'function') renderCartPage();
 }
 
+/* ---------- WhatsApp ordering ---------- */
+function buildWhatsAppOrderMessage(cart, totals){
+  const user = getUser() || {};
+  const delivery = getDelivery() || {};
+  const lines = [];
+  lines.push('🔔 *New Order — Bell N Tell*');
+  lines.push('');
+  lines.push('*Customer:* ' + (user.name || '-'));
+  lines.push('*Phone:* ' + (delivery.phone || '-'));
+  if(typeof delivery.lat === 'number' && typeof delivery.lng === 'number'){
+    lines.push('*Location:* https://www.google.com/maps?q=' + delivery.lat + ',' + delivery.lng);
+  }
+  lines.push('');
+  lines.push('*Items:*');
+  cart.forEach(c=>{
+    lines.push('• ' + c.qty + 'x ' + c.name + ' — Rs. ' + (c.price*c.qty).toFixed(2));
+  });
+  lines.push('');
+  lines.push('Subtotal: Rs. ' + totals.subtotal.toFixed(2));
+  lines.push('Delivery Fee: ' + (totals.fee===0 ? 'FREE' : 'Rs. ' + totals.fee.toFixed(2)));
+  lines.push('*Total: Rs. ' + totals.total.toFixed(2) + '*');
+  lines.push('');
+  lines.push('Order ID: #' + totals.orderId);
+  lines.push('');
+  lines.push('Please confirm my order by replying to this message. Thank you! 🙏');
+  return lines.join('\n');
+}
+function sendOrderToWhatsApp(cart, totals){
+  const msg = buildWhatsAppOrderMessage(cart, totals);
+  const url = 'https://wa.me/' + OWNER_WHATSAPP + '?text=' + encodeURIComponent(msg);
+  window.open(url, '_blank');
+}
+
 /* ---------- geolocation ---------- */
 function haversine(lat1, lon1, lat2, lon2){
   const R = 6371;
@@ -372,7 +408,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
   const profileIcon = document.querySelector('.icon-link.profile-icon');
   if(profileIcon){
     const u = getUser();
-    if(u && !isGuest()) profileIcon.title = u.name;
+    if(u) profileIcon.title = u.name;
   }
 });
 

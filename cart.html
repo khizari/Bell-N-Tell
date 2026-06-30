@@ -169,16 +169,17 @@ function renderCartPage(){
     <div class="sum-row ${fee===0?'green':''}"><span>Delivery Fee</span><span>${fee===0?'FREE':'Rs. '+fee.toFixed(2)}</span></div>
     <div class="sum-row bold"><span>Total</span><span>Rs. ${total.toFixed(2)}</span></div>
     <button class="checkout-btn" onclick="goToCheckout()">
-      <span>Checkout</span>
+      <span>Confirm via WhatsApp</span>
       <span>Rs. ${total.toFixed(2)}</span>
     </button>
+    <p style="font-size:12px;color:var(--muted);margin-top:10px;text-align:center;">We'll open WhatsApp with your order already written — just tap Send to confirm.</p>
   `;
 }
 
 function goToCheckout(){
   if(getCart().length===0) return;
   const u = getUser();
-  if(!u && !isGuest()){
+  if(!u){
     DB.set('redirect', 'cart.html?checkout=1');
     location.href = 'login.html';
     return;
@@ -186,11 +187,6 @@ function goToCheckout(){
   if(!getDelivery()){
     DB.set('redirect', 'cart.html?checkout=1');
     location.href = 'location.html';
-    return;
-  }
-  if(isGuest()){
-    DB.set('redirect', 'cart.html?checkout=1');
-    location.href = 'login.html';
     return;
   }
   placeOrder();
@@ -202,19 +198,23 @@ function placeOrder(){
   const subtotal = cart.reduce((s,c)=>s+c.price*c.qty,0);
   const fee = subtotal >= FREE_DELIVERY_OVER ? 0 : DELIVERY_FEE;
   const total = subtotal + fee;
+  const orderId = String(Date.now()).slice(-6);
+
+  sendOrderToWhatsApp(cart, {subtotal, fee, total, orderId});
+
   const orders = getOrders();
   const order = {
-    id: String(Date.now()).slice(-6),
+    id: orderId,
     time: new Date().toLocaleString('en-GB', {day:'2-digit', month:'short', hour:'2-digit', minute:'2-digit'}),
-    status: 'Preparing',
+    status: 'Awaiting confirmation on WhatsApp',
     items: cart.map(c=>`${c.qty}x ${c.name}`),
     total
   };
   orders.running.unshift(order);
   setOrders(orders);
   setCart([]);
-  showToast('Order placed! Track it under My Orders 🔔');
-  setTimeout(()=>{ location.href = 'orders.html'; }, 900);
+  showToast('Order opened in WhatsApp — just tap Send! 🔔');
+  setTimeout(()=>{ location.href = 'orders.html'; }, 1200);
 }
 
 renderCartPage();

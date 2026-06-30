@@ -332,10 +332,11 @@ section{padding:64px 0;}
   position:absolute; inset:0;
   background:linear-gradient(120deg,rgba(255,255,255,.05),transparent);
   animation:shimmer 3s ease-in-out infinite;
+  pointer-events:none;
 }
 @keyframes shimmer{0%,100%{opacity:0}50%{opacity:1}}
-.promo-banner .blob{position:absolute; width:200px; height:200px; border-radius:50%; background:rgba(255,255,255,.1); right:-60px; top:-80px; animation:blobPulse 4s ease-in-out infinite;}
-.promo-banner .blob2{position:absolute; width:130px; height:130px; border-radius:50%; background:rgba(255,255,255,.08); right:100px; bottom:-70px; animation:blobPulse 4s ease-in-out infinite 2s;}
+.promo-banner .blob{position:absolute; width:200px; height:200px; border-radius:50%; background:rgba(255,255,255,.1); right:-60px; top:-80px; animation:blobPulse 4s ease-in-out infinite; pointer-events:none;}
+.promo-banner .blob2{position:absolute; width:130px; height:130px; border-radius:50%; background:rgba(255,255,255,.08); right:100px; bottom:-70px; animation:blobPulse 4s ease-in-out infinite 2s; pointer-events:none;}
 @keyframes blobPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
 .promo-banner .top{font-family:'Baloo 2'; font-weight:700; font-size:24px;}
 .promo-banner .mid{font-size:14px; opacity:.95; margin:4px 0 0;}
@@ -407,6 +408,9 @@ section{padding:64px 0;}
 .cat-pillbar{display:flex; gap:10px; overflow-x:auto; padding-bottom:8px; margin-bottom:30px; scrollbar-width:thin; scrollbar-color:var(--line) transparent;}
 .cat-pillbar::-webkit-scrollbar{height:4px;}
 .cat-pillbar::-webkit-scrollbar-thumb{background:var(--line); border-radius:4px;}
+@media (min-width:881px){
+  .cat-pillbar{flex-wrap:wrap; overflow-x:visible; padding-bottom:0;}
+}
 .cat-pill{flex:0 0 auto; display:flex; align-items:center; gap:8px; background:#fff; border:1.5px solid var(--line); padding:9px 16px; border-radius:999px; font-weight:700; font-size:13.5px; cursor:pointer; white-space:nowrap; transition:all .2s;}
 .cat-pill img{width:20px;height:20px;}
 .cat-pill.active{background:var(--orange); color:#fff; border-color:var(--orange); box-shadow:0 4px 14px rgba(243,105,44,.35);}
