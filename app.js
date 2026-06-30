@@ -6,7 +6,7 @@ const BRANCH = {lat:30.196235, lng:71.510246, radiusKm:10, name:'Bell N Tell (Sh
 /* Owner's WhatsApp number that receives every order.
    Format: country code + number, digits only — no +, no spaces, no leading 0.
    ⚠️ Replace with the real WhatsApp number before going live. */
-const OWNER_WHATSAPP = '923001234567';
+const OWNER_WHATSAPP = '923434912164';
 
 const CATS = [
   {id:'chinese', name:'Chinese Kitchen', img:'assets/cat-chinese.webp', bg:'#FDEFE2', items:[
