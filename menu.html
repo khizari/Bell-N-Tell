@@ -114,8 +114,8 @@ let activeCat = 'all';
 
 function renderPillbar(){
   const el = document.getElementById('catPillbar');
-  let html = `<div class="cat-pill ${activeCat==='all'?'active':''}" onclick="setCat('all')">All</div>`;
-  html += CATS.map(c=>`<div class="cat-pill ${activeCat===c.id?'active':''}" onclick="setCat('${c.id}')">${c.name}</div>`).join('');
+  let html = `<div class="cat-pill ${activeCat==='all'?'active':''}" onclick="setCat('all')"><span class="cat-pill-ico">🍽️</span>All</div>`;
+  html += CATS.map(c=>`<div class="cat-pill ${activeCat===c.id?'active':''}" onclick="setCat('${c.id}')"><span class="cat-pill-ico"><img src="assets/cat-${c.id}.webp" alt=""></span>${c.name}</div>`).join('');
   el.innerHTML = html;
 }
 function setCat(id){
@@ -135,7 +135,7 @@ function renderMenu(){
   cats.forEach(c=>{
     const items = c.items.filter(it=>it.n.toLowerCase().includes(q));
     if(items.length===0) return;
-    html += `<div class="menu-section" id="sec-${c.id}">
+    html += `<div class="menu-section" id="sec-${c.id}" style="--catimg:url('assets/cat-${c.id}.webp')">
       <h2>${c.name}</h2>
       <div class="item-grid">`;
     items.forEach(it=>{
