@@ -482,7 +482,25 @@ section{padding:64px 0;}
   background:#fff; border-radius:var(--r-md); overflow:hidden;
   box-shadow:var(--shadow-sm); display:flex; flex-direction:column;
   border:1.5px solid transparent;
+  position:relative; isolation:isolate;
   transition:transform .3s cubic-bezier(.34,1.56,.64,1), box-shadow .3s, border-color .2s;
+}
+.deal-card::before{
+  content:"";
+  position:absolute; inset:0;
+  background-image:url('assets/deal-combo.webp');
+  background-size:cover;
+  background-position:center;
+  filter:blur(1px) saturate(1.05);
+  transform:scale(1.03);
+  opacity:.20;
+  z-index:-2;
+}
+.deal-card::after{
+  content:"";
+  position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(255,255,255,.55) 0%, #fff 72%);
+  z-index:-1;
 }
 .deal-card:hover{transform:translateY(-6px); box-shadow:var(--shadow); border-color:var(--orange);}
 .deal-card .top-accent{height:8px; background:linear-gradient(90deg,var(--orange),var(--orange-deep));}
