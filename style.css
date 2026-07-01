@@ -491,15 +491,15 @@ section{padding:64px 0;}
   background-image:url('assets/deal-combo.webp');
   background-size:cover;
   background-position:center;
-  filter:blur(1px) saturate(1.05);
+  filter:blur(1px) saturate(1.1);
   transform:scale(1.03);
-  opacity:.20;
+  opacity:.4;
   z-index:-2;
 }
 .deal-card::after{
   content:"";
   position:absolute; inset:0;
-  background:linear-gradient(180deg, rgba(255,255,255,.55) 0%, #fff 72%);
+  background:linear-gradient(180deg, rgba(255,248,241,.25) 0%, var(--cream) 82%);
   z-index:-1;
 }
 .deal-card:hover{transform:translateY(-6px); box-shadow:var(--shadow); border-color:var(--orange);}
