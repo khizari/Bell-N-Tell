@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Deals — Bell N Tell</title>
 <link rel="icon" href="assets/logo.png">
 <link rel="stylesheet" href="style.css">
@@ -122,10 +122,10 @@ function renderDeals(){
   const el = document.getElementById('dealGrid');
   el.innerHTML = DEALS.map((d,i)=>`
     <div class="deal-card">
-      <div class="thumb"><img src="${d.img}" alt="${d.n}" loading="lazy"></div>
+      <div class="top-accent"></div>
       <div class="body">
         <div class="name">${d.n}</div>
-        <div class="inc">Includes ${d.inc} items</div>
+        <div class="inc">Includes ${(d.items||[]).length} items</div>
         <div class="price">Rs. ${d.p}.0</div>
         <div class="deal-counter-row">
           <button class="deal-qty-btn minus" onclick="changeDealQty(${i},-1)" aria-label="Decrease">−</button>

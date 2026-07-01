@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Your Cart — Bell N Tell</title>
 <link rel="icon" href="assets/logo.png">
 <link rel="stylesheet" href="style.css">
@@ -111,13 +111,13 @@ function findCartMeta(key){
   if(key.indexOf('deal::')===0){
     const dealName = key.slice(6);
     const d = DEALS.find(x=>x.n===dealName);
-    return {img: d ? d.img : 'assets/cat-bbq.webp', bg:'#FDEDE0', unit: d ? `Includes ${d.inc} items` : ''};
+    return {unit: d ? `Includes ${(d.items||[]).length} items` : ''};
   }
   // menu items use key = 'catId::Name'
   const sep = key.indexOf('::');
   const catId = sep>-1 ? key.slice(0,sep) : '';
   const cat = CATS.find(c=>c.id===catId);
-  return {img: cat ? cat.img : 'assets/cat-fastfood.webp', bg: cat ? cat.bg : '#FDEDE0', unit: cat ? cat.name : ''};
+  return {unit: cat ? cat.name : ''};
 }
 
 function renderCartPage(){
@@ -139,7 +139,7 @@ function renderCartPage(){
     const meta = findCartMeta(c.key);
     return `
     <div class="cart-item">
-      <div class="thumb" style="background:${meta.bg}"><img src="${meta.img}" alt="${c.name}"></div>
+      <div class="accent-bar"></div>
       <div class="info">
         <div class="name">${c.name}</div>
         <div class="unit">${meta.unit}</div>

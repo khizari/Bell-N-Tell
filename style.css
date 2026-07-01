@@ -343,7 +343,10 @@ section{padding:64px 0;}
 .promo-banner .price{font-weight:800; margin-top:8px; font-size:20px;}
 .promo-banner .price del{opacity:.7; font-weight:500; margin-right:6px; font-size:16px;}
 .promo-banner .tag{background:rgba(255,255,255,.92); color:#1b1b1b; font-size:11.5px; font-weight:800; padding:3px 10px; border-radius:8px; margin-left:8px;}
-@media (max-width:600px){.promo-banner{padding:22px 20px;}.promo-banner .top{font-size:19px;}}
+.promo-banner .promo-photo{width:96px; height:96px; border-radius:18px; overflow:hidden; flex-shrink:0; background:rgba(255,255,255,.12); position:relative; z-index:1;}
+.promo-banner .promo-photo img{width:100%; height:100%; object-fit:cover; display:block;}
+.promo-banner .promo-copy{flex:1; min-width:180px; position:relative; z-index:1;}
+@media (max-width:600px){.promo-banner{padding:22px 20px;}.promo-banner .top{font-size:19px;}.promo-banner .promo-photo{width:72px;height:72px;border-radius:14px;}}
 
 /* ============ FEATURE STRIP ============ */
 .feature-strip{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
@@ -417,7 +420,6 @@ section{padding:64px 0;}
 .cat-pill:hover:not(.active){border-color:var(--orange); color:var(--orange-deep);}
 .menu-section{margin-bottom:52px;}
 .menu-section h2{font-size:22px; margin-bottom:20px; display:flex; align-items:center; gap:10px; padding-bottom:12px; border-bottom:2px solid var(--line);}
-.menu-section h2 img{width:30px;height:30px;}
 .item-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
 @media (max-width:980px){.item-grid{grid-template-columns:repeat(2,1fr);}}
 @media (max-width:620px){.item-grid{grid-template-columns:1fr;}}
@@ -428,11 +430,8 @@ section{padding:64px 0;}
   transition:transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .25s, border-color .2s;
 }
 .item-card:hover{transform:translateY(-4px); box-shadow:var(--shadow); border-color:var(--orange);}
-.item-card .thumb{height:140px; display:flex; align-items:center; justify-content:center; background:var(--cream-deep);}
-.item-card .thumb img{width:84px; height:84px; transition:transform .3s cubic-bezier(.34,1.56,.64,1);}
-.item-card:hover .thumb img{transform:scale(1.1);}
-.item-card .disc-tag{position:absolute; top:12px; right:12px; background:var(--red); color:#fff; font-size:11px; font-weight:800; padding:4px 9px; border-radius:8px;}
-.item-card .body{padding:14px 16px 16px; display:flex; flex-direction:column; gap:10px; flex:1;}
+.item-card .top-accent{height:6px; background:linear-gradient(90deg,var(--orange),var(--orange-deep));}
+.item-card .body{padding:16px 16px 16px; display:flex; flex-direction:column; gap:10px; flex:1;}
 .item-card .name{font-weight:800; font-size:14.5px; min-height:38px;}
 .price-row{display:flex; align-items:baseline; gap:8px;}
 .price-row del{color:var(--muted); font-size:13px;}
@@ -457,9 +456,7 @@ section{padding:64px 0;}
   transition:transform .3s cubic-bezier(.34,1.56,.64,1), box-shadow .3s, border-color .2s;
 }
 .deal-card:hover{transform:translateY(-6px); box-shadow:var(--shadow); border-color:var(--orange);}
-.deal-card .thumb{height:160px; background:linear-gradient(135deg,#FFEFE1,#FDEDE0); display:flex; align-items:center; justify-content:center; overflow:hidden;}
-.deal-card .thumb img{width:96px;height:96px; transition:transform .4s cubic-bezier(.34,1.56,.64,1);}
-.deal-card:hover .thumb img{transform:scale(1.15) rotate(-5deg);}
+.deal-card .top-accent{height:8px; background:linear-gradient(90deg,var(--orange),var(--orange-deep));}
 .deal-card .body{padding:16px 18px 20px;}
 .deal-card .name{font-weight:800; font-size:16px; margin-bottom:4px;}
 .deal-card .inc{color:var(--muted); font-size:13px; margin-bottom:10px;}
@@ -478,8 +475,7 @@ section{padding:64px 0;}
 }
 .cart-item:hover{transform:translateX(4px); box-shadow:var(--shadow);}
 @keyframes slideIn{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
-.cart-item .thumb{width:64px;height:64px; border-radius:14px; background:var(--cream-deep); display:flex; align-items:center; justify-content:center; flex-shrink:0;}
-.cart-item .thumb img{width:40px;height:40px;}
+.cart-item .accent-bar{width:6px; align-self:stretch; border-radius:6px; background:linear-gradient(180deg,var(--orange),var(--orange-deep)); flex-shrink:0;}
 .cart-item .info{flex:1;}
 .cart-item .name{font-weight:800; font-size:15px;}
 .cart-item .unit{color:var(--muted); font-size:13px; margin-top:2px;}
@@ -1043,4 +1039,42 @@ section > .wrap > *:not(:empty) {
 .opc-asset-bg img{
   max-width: 100%;
   max-height: 100%;
+}
+
+/* ============ MOBILE FORM FIX — prevent iOS Safari auto-zoom on focus ============ */
+/* iOS zooms the whole page in whenever a focused input's font-size is under
+   16px. This forces every text input/select/textarea to 16px on small
+   screens without changing how they look on tablet/laptop/desktop. */
+@media (max-width:768px){
+  input, textarea, select{
+    font-size:16px !important;
+  }
+}
+
+/* ============ TOUCH TARGET SIZING — comfortable tap areas on touch screens ============ */
+/* pointer:coarse targets touch input specifically — including a mobile
+   browser's "Desktop site" mode, which reports a wide viewport but is still
+   a finger, not a mouse. Precise-pointer devices keep the original compact sizing. */
+@media (pointer:coarse){
+  .qty-btn{width:34px; height:34px;}
+  .trash{width:40px; height:40px;}
+  .nav-toggle{padding:10px;}
+  .icon-link{width:44px; height:44px;}
+}
+
+/* ============ SAFE-AREA SUPPORT — notched phones (iPhone, edge-to-edge Android) ============ */
+.navbar{
+  padding-top:env(safe-area-inset-top);
+}
+.toast{
+  bottom:calc(28px + env(safe-area-inset-bottom));
+}
+body{
+  padding-bottom:env(safe-area-inset-bottom);
+}
+
+/* ============ PREVENT HORIZONTAL OVERFLOW ON ANY SCREEN ============ */
+html{
+  overflow-x:hidden;
+  width:100%;
 }

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Menu — Bell N Tell</title>
 <link rel="icon" href="assets/logo.png">
 <link rel="stylesheet" href="style.css">
@@ -38,7 +38,7 @@
   <div class="deco" style="width:120px;height:120px; right:120px; bottom:-70px;"></div>
   <div class="wrap">
     <h1 class="display">Explore Menu</h1>
-    <p>Browse all 8 kitchens — every dish comes with a flat 10% discount.</p>
+    <p>Browse our full menu, freshly prepared and delivered hot.</p>
   </div>
 </header>
 
@@ -115,7 +115,7 @@ let activeCat = 'all';
 function renderPillbar(){
   const el = document.getElementById('catPillbar');
   let html = `<div class="cat-pill ${activeCat==='all'?'active':''}" onclick="setCat('all')">All</div>`;
-  html += CATS.map(c=>`<div class="cat-pill ${activeCat===c.id?'active':''}" onclick="setCat('${c.id}')"><img src="${c.img}">${c.name}</div>`).join('');
+  html += CATS.map(c=>`<div class="cat-pill ${activeCat===c.id?'active':''}" onclick="setCat('${c.id}')">${c.name}</div>`).join('');
   el.innerHTML = html;
 }
 function setCat(id){
@@ -136,25 +136,23 @@ function renderMenu(){
     const items = c.items.filter(it=>it.n.toLowerCase().includes(q));
     if(items.length===0) return;
     html += `<div class="menu-section" id="sec-${c.id}">
-      <h2><img src="${c.img}">${c.name}</h2>
+      <h2>${c.name}</h2>
       <div class="item-grid">`;
     items.forEach(it=>{
       const key = keyFor(c.id, it.n);
-      const off = Math.round((1-it.d/it.p)*100);
       html += `
         <div class="item-card">
-          ${off>0?`<div class="disc-tag">-${off}.0%</div>`:''}
-          <div class="thumb" style="background:${c.bg}"><img src="${it.img}" alt="${it.n}" loading="lazy"></div>
+          <div class="top-accent"></div>
           <div class="body">
             <div class="name">${it.n}</div>
-            <div class="price-row">${it.p!==it.d?`<del>Rs. ${it.p}</del>`:''}<b>Rs. ${it.d}</b></div>
+            <div class="price-row"><b>Rs. ${it.p}</b></div>
             <div class="actions">
               <div class="qty-stepper">
                 <button class="qty-btn" onclick="stepQty('${key}',-1)">−</button>
                 <span class="qty-num" id="qty-${key}">1</span>
                 <button class="qty-btn" onclick="stepQty('${key}',1)">+</button>
               </div>
-              <button class="add-btn" onclick="addItem('${key}','${it.n.replace(/'/g,"\\'")}',${it.d})">Add to Cart</button>
+              <button class="add-btn" onclick="addItem('${key}','${it.n.replace(/'/g,"\\'")}',${it.p})">Add to Cart</button>
             </div>
           </div>
         </div>`;

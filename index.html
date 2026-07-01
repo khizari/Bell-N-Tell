@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Bell N Tell — Order Online | Multan</title>
 <link rel="icon" href="assets/logo.png">
 <link rel="stylesheet" href="style.css">
@@ -44,9 +44,9 @@
         <a href="deals.html" class="btn btn-outline">View Deals</a>
       </div>
       <div class="hero-stats">
-        <div><b>7</b><span>Menu categories</span></div>
+        <div><b>20</b><span>Menu categories</span></div>
         <div><b>10km</b><span>Delivery radius</span></div>
-        <div><b>10%</b><span>Off every order</span></div>
+        <div><b>4.9★</b><span>Google rating</span></div>
       </div>
     </div>
     <div class="hero-art">
@@ -60,7 +60,7 @@
         <!-- RIGHT SIDE badges -->
         <div class="phone-badge fb-right fb-r1">⭐ 4.9 <span class="fb-sub">Google Reviews</span></div>
         <div class="phone-badge fb-right fb-r2"><span class="badge-dot"></span> 120+ orders today</div>
-        <div class="phone-badge fb-right fb-r3">🏷️ 10% off every order</div>
+        <div class="phone-badge fb-right fb-r3">🍨 Ice cream &amp; shakes too</div>
         <div class="phone-badge fb-right fb-r4">👨‍🍳 Chef's special daily</div>
         <div class="phone-badge fb-right fb-r5">📍 Multan's finest</div>
       </div>
@@ -82,83 +82,126 @@
     <!-- Category filter pills -->
     <div class="float-cats">
       <button class="fcat active" data-cat="all">🍽️ All</button>
-      <button class="fcat" data-cat="chinese">🥢 Chinese</button>
-      <button class="fcat" data-cat="pakistani">🍛 Pakistani</button>
-      <button class="fcat" data-cat="bbq">🔥 BBQ</button>
-      <button class="fcat" data-cat="salad">🥗 Salad</button>
+      <button class="fcat" data-cat="appetizer">🍤 Appetizer</button>
+      <button class="fcat" data-cat="chinese-soups">🍜 Chinese Soups</button>
+      <button class="fcat" data-cat="fish">🐟 Fish</button>
+      <button class="fcat" data-cat="chicken">🍗 Chicken</button>
+      <button class="fcat" data-cat="rice">🍚 Rice</button>
+      <button class="fcat" data-cat="noodles">🍝 Noodles</button>
+      <button class="fcat" data-cat="chopsuey">🥡 Chopsuey</button>
+      <button class="fcat" data-cat="burgers">🍔 Burgers</button>
+      <button class="fcat" data-cat="sandwiches">🥪 Sandwiches</button>
+      <button class="fcat" data-cat="english-food">🍽️ English Food</button>
+      <button class="fcat" data-cat="sizzling-steaks">🥩 Sizzling Steaks</button>
+      <button class="fcat" data-cat="pakistani-chicken">🍛 Pakistani (Chicken)</button>
+      <button class="fcat" data-cat="pakistani-mutton">🍖 Pakistani (Mutton)</button>
+      <button class="fcat" data-cat="bar-bq">🔥 Bar B.Q</button>
       <button class="fcat" data-cat="tandoor">🫓 Tandoor</button>
-      <button class="fcat" data-cat="fastfood">🍔 Fast Food</button>
-      <button class="fcat" data-cat="english">🍽️ English</button>
-      <button class="fcat" data-cat="deals">🏷️ Deals</button>
+      <button class="fcat" data-cat="royal-drinks">🍹 Royal Drinks</button>
+      <button class="fcat" data-cat="ice-cream">🍨 Ice Cream</button>
+      <button class="fcat" data-cat="juices">🧃 Fresh Juices</button>
+      <button class="fcat" data-cat="milk-shakes">🥤 Milk Shakes</button>
+      <button class="fcat" data-cat="cold-drinks">🥤 Cold Drinks</button>
     </div>
 
-    <!-- Food cards with webp/svg images from assets -->
-    <div class="order-photo-grid">
-      <a href="menu.html#chinese" class="order-photo-card" data-cat="chinese">
-        <div class="opcard-img opc-asset-bg" style="--ec:#FDEFE2">
-          <img src="assets/cat-chinese.webp" alt="Chinese Kitchen" loading="lazy">
-        </div>
-        <div class="opcard-info"><span class="opcard-name">Chinese Kitchen</span><span class="opcard-eta">⏱ 20–35 min</span></div>
+    <div class="order-photo-grid" id="homeCatGrid">
+      <a href="menu.html#appetizer" class="order-photo-card" data-cat="appetizer">
+        <div class="opc-asset-bg" style="--ec:#FDEFE2"><img src="assets/cat-appetizer.webp" alt="Appetizer" loading="lazy"></div>
+        <div class="opcard-info"><span class="opcard-name">Appetizer</span><span class="opcard-eta">⏱ 10–20 min</span></div>
       </a>
-      <a href="menu.html#pakistani" class="order-photo-card" data-cat="pakistani">
-        <div class="opcard-img opc-asset-bg" style="--ec:#FCE8E6">
-          <img src="assets/cat-pakistani.webp" alt="Pakistani Kitchen" loading="lazy">
-        </div>
-        <div class="opcard-info"><span class="opcard-name">Pakistani Kitchen</span><span class="opcard-eta">⏱ 25–40 min</span></div>
+      <a href="menu.html#chinese-soups" class="order-photo-card" data-cat="chinese-soups">
+        <div class="opc-asset-bg" style="--ec:#F6E9D8"><img src="assets/cat-chinese-soups.webp" alt="Chinese Soups" loading="lazy"></div>
+        <div class="opcard-info"><span class="opcard-name">Chinese Soups</span><span class="opcard-eta">⏱ 15–25 min</span></div>
       </a>
-      <a href="menu.html#bbqsec" class="order-photo-card" data-cat="bbq">
-        <div class="opcard-img opc-asset-bg" style="--ec:#FDE3DA">
-          <img src="assets/cat-bbq.webp" alt="BBQ Section" loading="lazy">
-        </div>
-        <div class="opcard-info"><span class="opcard-name">BBQ Section</span><span class="opcard-eta">⏱ 30–45 min</span></div>
+      <a href="menu.html#fish" class="order-photo-card" data-cat="fish">
+        <div class="opc-asset-bg" style="--ec:#E3F2F5"><img src="assets/cat-fish.webp" alt="Fish" loading="lazy"></div>
+        <div class="opcard-info"><span class="opcard-name">Fish</span><span class="opcard-eta">⏱ 20–35 min</span></div>
       </a>
-      <a href="menu.html#salad" class="order-photo-card" data-cat="salad">
-        <div class="opcard-img opc-asset-bg" style="--ec:#E6F4E9">
-          <img src="assets/cat-salad.webp" alt="Salad Bar" loading="lazy">
-        </div>
-        <div class="opcard-info"><span class="opcard-name">Salad Bar</span><span class="opcard-eta">⏱ 10–20 min</span></div>
+      <a href="menu.html#chicken" class="order-photo-card" data-cat="chicken">
+        <div class="opc-asset-bg" style="--ec:#FDE3DA"><img src="assets/cat-chicken.webp" alt="Chicken" loading="lazy"></div>
+        <div class="opcard-info"><span class="opcard-name">Chicken</span><span class="opcard-eta">⏱ 20–35 min</span></div>
+      </a>
+      <a href="menu.html#rice" class="order-photo-card" data-cat="rice">
+        <div class="opc-asset-bg" style="--ec:#F6E9D8"><img src="assets/cat-rice.webp" alt="Rice" loading="lazy"></div>
+        <div class="opcard-info"><span class="opcard-name">Rice</span><span class="opcard-eta">⏱ 15–25 min</span></div>
+      </a>
+      <a href="menu.html#noodles" class="order-photo-card" data-cat="noodles">
+        <div class="opc-asset-bg" style="--ec:#FDEFE2"><img src="assets/cat-noodles.webp" alt="Noodles" loading="lazy"></div>
+        <div class="opcard-info"><span class="opcard-name">Noodles</span><span class="opcard-eta">⏱ 15–25 min</span></div>
+      </a>
+      <a href="menu.html#chopsuey" class="order-photo-card" data-cat="chopsuey">
+        <div class="opc-asset-bg" style="--ec:#E6F4E9"><img src="assets/cat-chopsuey.webp" alt="Chopsuey" loading="lazy"></div>
+        <div class="opcard-info"><span class="opcard-name">Chopsuey</span><span class="opcard-eta">⏱ 15–25 min</span></div>
+      </a>
+      <a href="menu.html#burgers" class="order-photo-card" data-cat="burgers">
+        <div class="opc-asset-bg" style="--ec:#FFEAD8"><img src="assets/cat-burgers.webp" alt="Burgers" loading="lazy"></div>
+        <div class="opcard-info"><span class="opcard-name">Burgers</span><span class="opcard-eta">⏱ 15–25 min</span></div>
+      </a>
+      <a href="menu.html#sandwiches" class="order-photo-card" data-cat="sandwiches">
+        <div class="opc-asset-bg" style="--ec:#F6E9D8"><img src="assets/cat-sandwiches.webp" alt="Sandwiches" loading="lazy"></div>
+        <div class="opcard-info"><span class="opcard-name">Sandwiches</span><span class="opcard-eta">⏱ 15–25 min</span></div>
+      </a>
+      <a href="menu.html#english-food" class="order-photo-card" data-cat="english-food">
+        <div class="opc-asset-bg" style="--ec:#EFEAE0"><img src="assets/cat-english-food.webp" alt="English Food" loading="lazy"></div>
+        <div class="opcard-info"><span class="opcard-name">English Food</span><span class="opcard-eta">⏱ 20–30 min</span></div>
+      </a>
+      <a href="menu.html#sizzling-steaks" class="order-photo-card" data-cat="sizzling-steaks">
+        <div class="opc-asset-bg" style="--ec:#FDE3DA"><img src="assets/cat-sizzling-steaks.webp" alt="Sizzling Steaks" loading="lazy"></div>
+        <div class="opcard-info"><span class="opcard-name">Sizzling Steaks</span><span class="opcard-eta">⏱ 20–30 min</span></div>
+      </a>
+      <a href="menu.html#pakistani-chicken" class="order-photo-card" data-cat="pakistani-chicken">
+        <div class="opc-asset-bg" style="--ec:#FCE8E6"><img src="assets/cat-pakistani-chicken.webp" alt="Pakistani (Chicken)" loading="lazy"></div>
+        <div class="opcard-info"><span class="opcard-name">Pakistani (Chicken)</span><span class="opcard-eta">⏱ 25–40 min</span></div>
+      </a>
+      <a href="menu.html#pakistani-mutton" class="order-photo-card" data-cat="pakistani-mutton">
+        <div class="opc-asset-bg" style="--ec:#FCE8E6"><img src="assets/cat-pakistani-mutton.webp" alt="Pakistani (Mutton)" loading="lazy"></div>
+        <div class="opcard-info"><span class="opcard-name">Pakistani (Mutton)</span><span class="opcard-eta">⏱ 30–45 min</span></div>
+      </a>
+      <a href="menu.html#bar-bq" class="order-photo-card" data-cat="bar-bq">
+        <div class="opc-asset-bg" style="--ec:#FDE3DA"><img src="assets/cat-bar-bq.webp" alt="Bar B.Q" loading="lazy"></div>
+        <div class="opcard-info"><span class="opcard-name">Bar B.Q</span><span class="opcard-eta">⏱ 30–45 min</span></div>
       </a>
       <a href="menu.html#tandoor" class="order-photo-card" data-cat="tandoor">
-        <div class="opcard-img opc-asset-bg" style="--ec:#F6E9D8">
-          <img src="assets/cat-tandoor.webp" alt="Tandoor" loading="lazy">
-        </div>
+        <div class="opc-asset-bg" style="--ec:#F6E9D8"><img src="assets/cat-tandoor.webp" alt="Tandoor" loading="lazy"></div>
         <div class="opcard-info"><span class="opcard-name">Tandoor</span><span class="opcard-eta">⏱ 20–35 min</span></div>
       </a>
-      <a href="menu.html#fastfood" class="order-photo-card" data-cat="fastfood">
-        <div class="opcard-img opc-asset-bg" style="--ec:#FFEAD8">
-          <img src="assets/cat-fastfood.webp" alt="Fast Food" loading="lazy">
-        </div>
-        <div class="opcard-info"><span class="opcard-name">Fast Food</span><span class="opcard-eta">⏱ 15–25 min</span></div>
+      <a href="menu.html#royal-drinks" class="order-photo-card" data-cat="royal-drinks">
+        <div class="opc-asset-bg" style="--ec:#E9F0FB"><img src="assets/cat-royal-drinks.webp" alt="Royal Drinks" loading="lazy"></div>
+        <div class="opcard-info"><span class="opcard-name">Royal Drinks</span><span class="opcard-eta">⏱ 10–15 min</span></div>
       </a>
-      <a href="menu.html#english" class="order-photo-card" data-cat="english">
-        <div class="opcard-img opc-asset-bg" style="--ec:#EFEAE0">
-          <img src="assets/cat-english.webp" alt="English Kitchen" loading="lazy">
-        </div>
-        <div class="opcard-info"><span class="opcard-name">English Kitchen</span><span class="opcard-eta">⏱ 20–30 min</span></div>
+      <a href="menu.html#ice-cream" class="order-photo-card" data-cat="ice-cream">
+        <div class="opc-asset-bg" style="--ec:#FDEFE2"><img src="assets/cat-ice-cream.webp" alt="Ice Cream" loading="lazy"></div>
+        <div class="opcard-info"><span class="opcard-name">Ice Cream</span><span class="opcard-eta">⏱ 10–15 min</span></div>
       </a>
-      <a href="deals.html" class="order-photo-card" data-cat="deals">
-        <div class="opcard-img opc-asset-bg" style="--ec:#FFF8F0">
-          <img src="assets/deals.webp" alt="Platter Special" loading="lazy">
-        </div>
-        <div class="opcard-info"><span class="opcard-name">Platter Special</span><span class="opcard-eta">⏱ 30–40 min</span></div>
+      <a href="menu.html#juices" class="order-photo-card" data-cat="juices">
+        <div class="opc-asset-bg" style="--ec:#E6F4E9"><img src="assets/cat-juices.webp" alt="Fresh Juices" loading="lazy"></div>
+        <div class="opcard-info"><span class="opcard-name">Fresh Juices</span><span class="opcard-eta">⏱ 10–15 min</span></div>
+      </a>
+      <a href="menu.html#milk-shakes" class="order-photo-card" data-cat="milk-shakes">
+        <div class="opc-asset-bg" style="--ec:#FCE8E6"><img src="assets/cat-milk-shakes.webp" alt="Milk Shakes" loading="lazy"></div>
+        <div class="opcard-info"><span class="opcard-name">Milk Shakes</span><span class="opcard-eta">⏱ 10–15 min</span></div>
+      </a>
+      <a href="menu.html#cold-drinks" class="order-photo-card" data-cat="cold-drinks">
+        <div class="opc-asset-bg" style="--ec:#E3F2F5"><img src="assets/cat-cold-drinks.webp" alt="Cold Drinks" loading="lazy"></div>
+        <div class="opcard-info"><span class="opcard-name">Cold Drinks</span><span class="opcard-eta">⏱ 5–10 min</span></div>
       </a>
     </div>
   </div>
 </section>
 
-
-
-<!-- ── PROMO BANNER ── -->
+<!-- ── SPECIAL COMBO DEAL ── -->
 <section style="padding-top:0;">
   <div class="wrap">
     <div class="promo-banner">
       <div class="blob"></div><div class="blob2"></div>
-      <div>
-        <div class="top">🔔 Flat 10% Discount — Every Order</div>
-        <div class="mid">Bell N Tell Special Chicken Dinner &amp; the entire menu</div>
-        <div class="price"><del>Rs. 1780</del> Rs. 1602 <span class="tag">-10%</span></div>
+      <div class="promo-photo">
+        <img src="assets/deal-combo.webp" alt="Special Combo Deal">
       </div>
-      <a href="deals.html" class="btn" style="background:#fff; color:var(--blue2); flex-shrink:0;">Order Now</a>
+      <div class="promo-copy">
+        <div class="top">🔔 Special Combo Deal</div>
+        <div class="mid">Platters, BBQ combos &amp; take-away offers — built for sharing</div>
+      </div>
+      <a href="deals.html" class="btn" style="background:#fff; color:var(--blue2); flex-shrink:0;">View Deals</a>
     </div>
   </div>
 </section>
@@ -181,8 +224,8 @@
         <div class="ic">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
         </div>
-        <h3>Flat 10% off, always</h3>
-        <p>Every dish across all 7 kitchens comes with a standing 10% discount.</p>
+        <h3>Real menu, real prices</h3>
+        <p>Every category, item and price is listed upfront — no surprises at checkout.</p>
       </div>
       <div class="feature-card">
         <div class="ic">
